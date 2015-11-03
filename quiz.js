@@ -77,7 +77,7 @@ var load_question = function(current_question) {
 	}
 
 	for (i=0;i<num_choices;i++) {
-		$("form").append("<div class='radio'><input type='radio' name='answer_choice' value='" + i + "' /></div>" + current_question.choices[i]);
+		$("form").append("<div class='radio'><input type='radio' name='answer_choice' value='" + i + "' />" + current_question.choices[i] + "</div>");
 	}
 };
 
