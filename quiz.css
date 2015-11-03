@@ -1,5 +1,7 @@
 h1 {
 	text-align: center;
+	letter-spacing: 2px;
+	margin: 10px;
 	text-shadow: 2px 2px #E0E0EB;
 	color: #0052CC;
 }
@@ -7,6 +9,19 @@ h1 {
 h2 {
 	text-align: center;
 }
+
+form {
+	padding: 5px;
+	padding-left: 10px;
+	padding-right: 10px;
+	margin: 5px;
+	background-color: #F2F2F2;
+}
+
+.btn {
+	margin: 5px;
+}
+
 
 
 
