@@ -1,6 +1,6 @@
 var all_questions = [{
 	question:"Javascript is...",
-	choices:["A scripting version of the Java programming langauge","A programming language built into web browsers","A font-face inspired by the aesthetics coffee","A style of shaky handwriting resulting from excessive caffeine intake"],
+	choices:["A scripting version of the Java programming langauge","A programming language built into web browsers","A font-face inspired by the aesthetics of coffee","A style of shaky handwriting resulting from excessive caffeine intake"],
 	correct_answer:1
 },
 
