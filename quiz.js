@@ -37,13 +37,13 @@ $(document).ready(function(){
 
 	$("form").on("click", "input:radio", function(){
 		usr_choice = $(this).val();
-		$(".btn").addClass("active");
+		$(".btn").removeClass("disabled");
 	});
 
 	//if radio button is clicked, activate btn
 	$( ".btn" ).on( "click", function() {
 
-		if ($(".btn").hasClass("active")){
+		if (!$(".btn").hasClass("disabled")){
 	    	
     		//record answer
     		all_questions[current_question]["user_answer"] = usr_choice;
@@ -72,12 +72,12 @@ var load_question = function(current_question) {
 
 	$(".question-heading").text(current_question.question);
 
-	if ($(".btn").hasClass("active")) {
-		$(".btn").removeClass("active");
+	if (!$(".btn").hasClass("disabled")) {
+		$(".btn").addClass("disabled");
 	}
 
 	for (i=0;i<num_choices;i++) {
-		$("form").append("<input type='radio' name='answer_choice' value='" + i + "' />" + current_question.choices[i]);
+		$("form").append("<div class='radio'><input type='radio' name='answer_choice' value='" + i + "' /></div>" + current_question.choices[i]);
 	}
 };
 
