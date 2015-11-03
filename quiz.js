@@ -98,7 +98,7 @@ var load_score = function(){
 		});
 	}
 	else {
-		$(".main").append("<h2>Congradulations!");
+		$(".main").append("<h2>Congratulations!");
 	}
 
 };
