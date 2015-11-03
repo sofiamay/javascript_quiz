@@ -33,7 +33,7 @@ $(document).ready(function(){
 	var current_question = 0;
 	var usr_choice;
 
-	load_question(all_questions[current_question]);
+	load_question(current_question);
 
 	$("form").on("click", "input:radio", function(){
 		usr_choice = $(this).val();
@@ -50,11 +50,11 @@ $(document).ready(function(){
     		current_question +=1;
 
     		if (current_question == all_questions.length) {
-	    		load_results();
+	    		load_score();
 	    	}
 
 	    	else {
-	    		load_question(all_questions[current_question]);
+	    		load_question(current_question);
 	    	}
 	    	
 	    }
@@ -65,11 +65,13 @@ $(document).ready(function(){
 
 });
 
-var load_question = function(current_question) {
+var load_question = function(question_index) {
+	var current_question = all_questions[question_index];
 	var num_choices = current_question.choices.length;
 
 	$("form").empty();
 
+	$("#remaining-questions-counter > h3").text((question_index+1) + "/" + all_questions.length);
 	$(".question-heading").text(current_question.question);
 
 	if (!$(".btn").hasClass("disabled")) {
@@ -81,15 +83,52 @@ var load_question = function(current_question) {
 	}
 };
 
-var load_results = function(){
+var load_score = function(){
 	var correct = 0;
 	for (i=0;i<all_questions.length;i++) {
 		if (all_questions[i].user_answer == all_questions[i].correct_answer) {
 			correct++;
 		}
 	}
-	$(".container").empty().append("<h1>Your Results!</h1><h2>You got " + correct + "/" + all_questions.length + " questions correct</h2>");
+	$(".main").empty().append("<h1 class='dark-blue'>Your Results!</h1><h2>You got " + correct + "/" + all_questions.length + " questions correct</h2>");
+	if (correct < all_questions.length) {	
+		$(".main").append("<a><p>View incorrect answers</p></a>");
+		$("a").click(function(){
+			load_results();
+		});
+	}
+	else {
+		$(".main").append("<h2>Congradulations!");
+	}
 
+};
+
+var load_results = function(){
+	var current_question;
+
+	$(".main").append("<div id='results'><h3>You missed these questions:</h3></div>");
+	$("#results").append("<div class='answers'></div>");
+
+	for (var current=0;current<all_questions.length;current++) {
+		current_question = all_questions[current];
+
+		if (current_question.user_answer != current_question.correct_answer) {
+		 	$(".answers").append("<div class='quiz-question'><form id='question-" + current + "'></form></div>");
+		 	$("#question-" + current).append("<h2>" + current_question.question + "</h2>");
+
+		 	for (i=0;i<current_question.choices.length;i++) {
+		 		if (i==current_question.correct_answer) {
+		 			$("#question-" + current).append("<div class='radio'><label><input type='radio' disabled='disabled' name='answer_choice' value='" + i + "' /><p class='green'>" + current_question.choices[i] + "</p></label></div>");
+		 		}
+		 		else if (i==current_question.user_answer) {
+		 			$("#question-" + current).append("<div class='radio'><label><input type='radio' disabled='disabled' name='answer_choice' value='" + i + "' /><p class='red'>" + current_question.choices[i] + "</p></label></div>");
+		 		}
+		 		else {
+		 			$("#question-" + current).append("<div class='radio'><label><input type='radio' disabled='disabled' name='answer_choice' value='" + i + "' /><p>" + current_question.choices[i] + "</p></label></div>");
+		 		}
+		 	}
+		}
+	}
 };
 
 
