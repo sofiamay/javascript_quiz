@@ -14,6 +14,18 @@ var all_questions = [{
 	question:"What is scope?",
 	choices:["Where a variable is active in your code", "to scan or investigate", "the range of a subject", "a device that makes objects appear larger" ],
 	correct_answer:0
+},
+
+{
+	question:"What is functional programming?",
+	choices:["A program that functions correctly!","Programming that emphasizes the issue of commands","When mathematical functions not objects are used are used to build programs","Programming based on statements that change the state of the program"],
+	correct_answer:2
+},
+
+{
+	question:"What makes javascript unique?",
+	choices:["Objects aren't strongly typed", "Functions are objects which can be parameters", "It is extremely flexible", "All of the above"],
+	correct_answer:3
 }];
 
 
@@ -35,8 +47,6 @@ $(document).ready(function(){
 	    	
     		//record answer
     		all_questions[current_question]["user_answer"] = usr_choice;
-    		alert(all_questions[current_question].user_answer);
-    		alert(all_questions[current_question].correct_answer);
     		current_question +=1;
 
     		if (current_question == all_questions.length) {
